@@ -7,6 +7,6 @@ INSTRUCTIONS
 
 Nothing special required to run this. Just run index.html in your browser.  
 
-index.html
-	- particleController.js (handles user interaction)
-	- particleEngine.js (the actual particle engine.  this has all of the documentation)
+- index.html
+- js/particleController.js (handles user interaction)
+- js/particleEngine.js (the actual particle engine.  this has all of the documentation)
