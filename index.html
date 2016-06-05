@@ -1,0 +1,150 @@
+<!--
+	Particle Simulator 
+	
+	Peter Roca
+	June 2016
+-->
+
+
+
+<html ng-app="particleApp">
+
+<head>
+	<title>Peter Roca - Particles</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+	<script type="text/javascript" src="js/two.min.js"></script>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+     <script type="text/javascript" src="js/particleEngine.js"></script>
+	<script type="text/javascript" src="js/particleController.js"></script>
+   
+    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/css/bootstrap-slider.min.css" crossorigin="anonymous">
+
+	
+    <link rel="stylesheet" href="css/styles.css">
+	
+</head>
+
+<body ng-controller="ParticleController" ng-init="initialize()" >
+    <div id="svgContainer"  >
+        <svg  xmlns="http://www.w3.org/2000/svg" name="svgLeaf">
+            <path d="M127.251-22.679l-26.198,49.003c-2.974,5.326-8.297,4.834-13.625,1.858l-18.97-9.851l14.14,75.266
+                c2.975,13.752-6.564,13.752-11.272,7.808L38.223,64.245l-5.376,18.872c-0.617,2.478-3.345,5.078-7.433,4.457l-41.855-8.82
+                l10.994,40.08c2.354,8.92,4.187,12.613-2.377,14.967l-14.919,7.032l72.054,58.692c2.855,2.22,4.295,6.216,3.28,9.829l-6.307,20.753
+                c24.806-2.863,47.054-5.434,71.859-8.297c2.205-0.028,3.646,1.199,3.63,3.741l-4.423,76.692h19.814l-4.424-76.692
+                c-0.016-2.542,1.426-3.77,3.631-3.741c24.805,2.863,47.053,5.434,71.859,8.297l-6.307-20.753c-1.016-3.613,0.424-7.609,3.279-9.829
+                l72.054-58.692l-14.919-7.032c-6.563-2.354-4.73-6.047-2.377-14.967l10.994-40.08l-41.855,8.82
+                c-4.087,0.621-6.815-1.979-7.433-4.457l-5.376-18.872l-33.102,37.161c-4.707,5.944-14.246,5.944-11.271-7.808l14.139-75.266
+                l-18.97,9.851c-5.329,2.976-10.651,3.468-13.626-1.858L127.251-22.679z" stroke="black" stroke-width="2" fill="red"/>
+        </svg>
+        
+        <svg  name="svgSnowflake" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+           xml:space="preserve">             
+        <polygon style="fill:#ffffff;" points="71.538,62.283 71.574,62.217 74.732,64.914 79.784,66.506 75.758,63.064 71.796,61.818 
+            71.833,61.752 74.822,62.484 79.008,61.805 74.89,60.795 72.104,61.246 67.778,58.85 73.158,57.305 72.77,55.955 66.04,57.887 
+            63.581,56.523 67.809,55.311 67.422,53.961 61.845,55.561 59.385,54.197 68.305,51.641 67.919,50.292 57.649,53.236 51.769,49.978 
+            53.579,48.912 53.579,48.912 57.562,46.566 67.904,49.246 68.256,47.886 59.274,45.558 61.695,44.134 67.354,45.599 67.706,44.24 
+            63.408,43.126 65.831,41.702 72.769,43.498 73.12,42.138 67.54,40.694 71.807,38.184 74.601,38.565 78.69,37.447 74.488,36.874 
+            71.52,37.686 71.481,37.622 75.41,36.272 79.346,32.728 74.336,34.447 71.25,37.228 71.211,37.162 73.362,34.959 74.902,31.011 
+            71.939,34.042 70.916,36.671 66.65,39.182 68.054,33.762 66.695,33.41 64.939,40.188 62.517,41.615 63.621,37.358 62.263,37.004 
+            60.807,42.622 58.383,44.047 60.711,35.065 59.35,34.713 56.673,45.054 50.879,48.465 50.879,46.365 50.879,46.365 50.879,41.74 
+            58.431,34.186 57.438,33.195 50.879,39.756 50.879,36.944 55.01,32.813 54.017,31.821 50.879,34.959 50.879,32.148 55.945,27.081 
+            54.951,26.087 50.879,30.163 50.879,25.214 52.624,22.999 53.734,18.909 51.11,22.238 50.303,25.208 50.228,25.208 51.058,21.139 
+            50.001,15.949 48.941,21.139 49.771,25.208 49.695,25.208 48.888,22.238 46.266,18.909 47.377,22.999 49.121,25.214 49.121,30.163 
+            45.164,26.205 44.171,27.198 49.121,32.148 49.121,34.959 46.013,31.849 45.019,32.842 49.121,36.944 49.121,39.756 42.562,33.195 
+            41.568,34.186 49.121,41.74 49.121,48.511 47.245,47.471 47.244,47.471 43.201,45.23 40.255,34.96 38.906,35.347 41.465,44.268 
+            39.007,42.906 37.395,37.288 36.045,37.675 37.27,41.942 34.81,40.581 32.833,33.691 31.484,34.077 33.073,39.618 28.745,37.219 
+            27.653,34.618 24.613,31.665 26.254,35.573 28.463,37.718 28.426,37.786 25.268,35.086 20.216,33.494 24.241,36.936 28.203,38.183 
+            28.167,38.25 25.177,37.515 20.993,38.195 25.111,39.208 27.896,38.755 32.223,41.153 26.842,42.696 27.229,44.045 33.959,42.114 
+            36.418,43.478 32.191,44.69 32.577,46.039 38.155,44.44 40.614,45.801 31.693,48.361 32.082,49.711 42.351,46.764 48.23,50.023 
+            46.421,51.088 46.421,51.088 42.438,53.434 32.096,50.756 31.743,52.115 40.727,54.439 38.303,55.867 32.646,54.402 32.295,55.762 
+            36.593,56.875 34.169,58.301 27.23,56.504 26.88,57.861 32.459,59.307 28.194,61.818 25.399,61.438 21.311,62.555 25.51,63.127 
+            28.48,62.314 28.518,62.379 24.59,63.73 20.653,67.275 25.663,65.553 28.751,62.773 28.789,62.838 26.638,65.039 25.098,68.99 
+            28.061,65.957 29.085,63.328 33.349,60.82 31.945,66.238 33.305,66.59 35.06,59.811 37.482,58.387 36.379,62.645 37.738,62.996 
+            39.193,57.379 41.616,55.951 39.29,64.936 40.648,65.287 43.327,54.947 49.121,51.537 49.121,53.637 49.121,53.637 49.121,58.26 
+            41.568,65.812 42.562,66.807 49.121,60.246 49.121,63.057 44.991,67.189 45.982,68.182 49.121,65.041 49.121,67.854 44.055,72.92 
+            45.047,73.912 49.121,69.838 49.121,74.785 47.377,77.002 46.266,81.094 48.889,77.762 49.696,74.791 49.771,74.791 48.941,78.863 
+            49.999,84.051 51.059,78.863 50.228,74.791 50.305,74.791 51.112,77.762 53.734,81.094 52.624,77.002 50.879,74.783 50.879,69.838 
+            54.835,73.797 55.829,72.803 50.879,67.854 50.879,65.041 53.988,68.15 54.979,67.158 50.879,63.057 50.879,60.246 57.438,66.807 
+            58.431,65.812 50.879,58.26 50.879,51.49 52.755,52.531 52.755,52.531 56.8,54.77 59.745,65.039 61.094,64.652 58.535,55.734 
+            60.995,57.096 62.606,62.713 63.955,62.326 62.729,58.059 65.189,59.422 67.166,66.311 68.516,65.922 66.928,60.383 71.254,62.783 
+            72.347,65.383 75.387,68.338 73.744,64.428 "/>
+            
+        </svg>
+    </div>
+   
+	<div id="content">
+         <h1>Peter Roca - Particle engine</h1>
+		<div id="topControls">
+			<div class="btn-group" role="group" >
+				<button class="btn btn-default" ng-class="{active: engine.animationPlaying == true}"  ng-click="playSimulation()">
+					<span class="glyphicon glyphicon-play" ></span> 
+					Play
+				</button>
+				<button class="btn btn-default" ng-class="{active: engine.animationPlaying == false}"  ng-click="pauseSimulation()">
+					<span class="glyphicon glyphicon-pause"></span>
+					Pause
+				</button>
+                
+			</div>
+            <button class="btn btn-default" ng-click="clearPanel()">
+                Clear
+            </button>
+		</div>
+		<div id="simulationPane">
+		
+		</div>
+        
+		<div class="controls">		
+            <div>
+                <span>Particles</span>
+                <input type="text" readonly value="{{activeParticles}}"></input>
+            </div>
+            <br/>
+        
+			<div class="btn-group" role="group" style="margin-left: 20px;">
+				<button class="btn btn-default" ng-class="{active: engine.activeAnimation == 0}" ng-click="playLeafEffect()">
+					Blowing Leaves
+				</button>
+				<button class="btn btn-default" ng-class="{active: engine.activeAnimation == 1}" ng-click="playSnowEffect()">
+					Snowfall
+				</button>
+			</div>			
+		</div>
+        <div class="controls">
+            <span>Particles</span>
+            <div class="btn-group" role="group" style="margin-left: 20px;">            
+                <div id="particleSlider"></div>				
+			</div>       
+        </div>
+        <div class="controls">
+            <button class="btn btn-default" ng-class="{active: engine.showWindVectors == true}" ng-click="toggleWind()">
+                Show Wind Vectors
+            </button>
+            <button class="btn btn-default" ng-click="changeWind()">
+                Randomize Wind
+            </button>
+        </div>
+        <div class="controls">
+           <span>Wind Vector Strength</span>
+            <div class="btn-group" role="group" style="margin-left: 20px;">            
+                <div id="windStrengthSlider"></div>				
+			</div> 
+        </div>
+	</div>
+
+   
+</body>
+
+</html>
